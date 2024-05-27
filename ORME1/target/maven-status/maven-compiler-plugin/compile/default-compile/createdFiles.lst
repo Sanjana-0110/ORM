@@ -1,0 +1,3 @@
+com\sanju\controller\DeptController.class
+com\sanju\dao\DeptDAO.class
+com\sanju\model\Dept.class
