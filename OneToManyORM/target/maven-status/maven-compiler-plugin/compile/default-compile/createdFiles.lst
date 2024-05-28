@@ -1,8 +1,0 @@
-com\spring\service\AuthorDAO.class
-com\spring\model\Book.class
-com\spring\service\AuthorService.class
-com\spring\config\AppConfig.class
-com\spring\controller\AuthorController.class
-com\spring\repository\AuthorRepository.class
-com\spring\repository\BookRepository.class
-com\spring\model\Author.class
