@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student with Multiple Courses</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>Add Student with Multiple Courses</h2>
+    <form id="studentForm">
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" name="name" required><br><br>
+
+        <div id="coursesContainer">
+            <!-- Dynamic course input fields will be added here -->
+        </div>
+
+        <button type="button" onclick="addCourseInput()">Add Another Course</button><br><br>
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function addCourseInput() {
+            var container = document.getElementById("coursesContainer");
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "title";
+            input.placeholder = "Enter Course Title";
+            container.appendChild(input);
+            container.appendChild(document.createElement("br"));
+        }
+
+        function submitForm() {
+            var studentName = document.getElementById("studentName").value;
+            var courses = []; 
+            var courseInputs = document.querySelectorAll("#coursesContainer input");
+            courseInputs.forEach(function(input) {
+                var title = input.value.trim();
+                if (title !== "") {
+                    courses.push({ title: title });
+                }
+            });
+
+            var data = {
+                name: studentName,
+                courses: courses
+            };
+
+            console.log(data); // For debugging purposes
+
+            $.ajax({
+                type: 'POST',
+                url: "http://localhost:8080/ManyToManyORM/insertStudents",
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function(response) {
+                    console.log("Data inserted Successfully");
+                    alert("Data inserted Successfully");
+                },
+                error: function(error) {
+                    console.error("Error:", error);
+                    alert("Error: " + error.statusText);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
