@@ -41,6 +41,7 @@ public class StudentController {
 			}
 			studentService.saveStudent(student);
 		}
+		// one single student
 		// Set<Course> courses = new HashSet<>();
 		// for (Course courseDto : studentDto.getCourses()) {
 		// Course course = new Course();
